@@ -1,0 +1,14 @@
+{
+  "zenong": {
+    "street": "123 Main St",
+    "city": "Anytown",
+    "state": "CA",
+    "zipcode": "12345"
+  },
+  "zding": {
+    "street": "456 New Tech Way",
+    "city": "Naperville",
+    "state": "IL",
+    "zipcode": "60540"
+  }
+}
