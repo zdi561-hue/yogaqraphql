@@ -10,5 +10,11 @@
     "city": "Naperville",
     "state": "IL",
     "zipcode": "60540"
+  },
+  "zding1": {
+    "street": "456 New Tech Way",
+    "city": "Naperville",
+    "state": "IL",
+    "zipcode": "60540"
   }
 }

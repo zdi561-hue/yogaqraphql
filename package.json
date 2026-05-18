@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "test": "vitest run"
+    "mesh:build": "mesh build",
+    "dev": "mesh build && tsx watch src/index.ts",
+    "test": "mesh build && vitest run"
   },
   "dependencies": {
+    "@graphql-mesh/cli": "^0.82.0",
+    "@graphql-mesh/json-schema": "^0.93.0",
     "graphql": "^16.8.0",
     "graphql-yoga": "^5.0.0"
   },

@@ -1,0 +1,60 @@
+sources:
+  - name: NasaNeoApi
+    handler:
+      jsonSchema:
+        endpoint: https://api.nasa.gov/
+        operations:
+          - type: Query
+            field: getFeed
+            path: /neo/rest/v1/feed?start_date={args.startDate}&end_date={args.endDate}&api_key=DEMO_KEY
+            method: GET
+            argTypeMap:
+              startDate:
+                type: string
+              endDate:
+                type: string
+            responseSchema:
+              type: object
+              properties:
+                element_count:
+                  type: integer
+                near_earth_objects:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        is_potentially_hazardous_asteroid:
+                          type: boolean
+                        estimated_diameter:
+                          type: object
+                          properties:
+                            kilometers:
+                              type: object
+                              properties:
+                                estimated_diameter_min:
+                                  type: number
+                                estimated_diameter_max:
+                                  type: number
+                        close_approach_data:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              close_approach_date:
+                                type: string
+                              relative_velocity:
+                                type: object
+                                properties:
+                                  kilometers_per_hour:
+                                    type: string
+                              miss_distance:
+                                type: object
+                                properties:
+                                  kilometers:
+                                    type: string

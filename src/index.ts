@@ -3,10 +3,10 @@ import { createServer } from "http";
 import { resolvers } from "./resolvers/index.js";
 import path from 'node:path';
 import { readFileSync } from 'node:fs'; 
-
 import { randomUUID } from "node:crypto";
 
 const schemaFiles = [
+  "schema/nasaneofeed.graphql",
   "schema/query.graphql",
   "schema/mutation.graphql",
   "schema/types/address.graphql"
@@ -28,7 +28,6 @@ const yoga = createYoga({
       request,
       requestId,
       clientName,
-      // Create a logger that prepends both the ID and the Client Name
       logger: {
         ...console,
         info: (message: string, ...args: any[]) => 
@@ -40,14 +39,10 @@ const yoga = createYoga({
       },
     };
   },
-  // Use the plugins system to append metadata to the response
   plugins: [
     {
-      // This hook allows us to mutate the result before it is sent
       onExecutionResult({ result, context }) {
-        // Ensure result is an object and not an AsyncIterable (for subscriptions/defer)
         if (result && !Array.isArray(result) && !('initialResult' in result)) {
-          // Add the metadata object at the top level
           (result as any).metadata = {
             requestId: (context as any).requestId
           };
