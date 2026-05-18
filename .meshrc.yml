@@ -58,3 +58,6 @@ sources:
                                 properties:
                                   kilometers:
                                     type: string
+cache:
+  localforage:
+    driver: [WEBSQL, INDEXEDDB, LOCALSTORAGE]
